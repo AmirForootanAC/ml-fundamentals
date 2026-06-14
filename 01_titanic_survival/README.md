@@ -94,6 +94,7 @@ Stratified K-Fold Cross Validation was used for robust evaluation.
 Example result:
 
     ![Model Comparison](images/XGBoostCrossValidation.png)
+    ![Model Comparison](images/XGBoostCrossValidation.png)
 
 ---
 
