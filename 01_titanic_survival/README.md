@@ -83,7 +83,7 @@ Three machine learning models were trained and compared:
 
 Random Forest feature importance analysis was performed to understand key drivers of survival.
 
-    ![Model Comparison](images/RandomForest.png)
+![Model Comparison](./01_titanic_survival/images/RandomForest.png)
 
 ---
 
