@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay
 
 
 class MNISTVisualizer:
@@ -28,5 +29,22 @@ class MNISTVisualizer:
             plt.axis("off")
 
         plt.tight_layout()
+
+        plt.show()
+
+    def show_confusion_matrix(
+        self,
+        y_true,
+        y_pred
+    ):
+
+        ConfusionMatrixDisplay.from_predictions(
+            y_true,
+            y_pred
+        )
+
+        plt.title(
+            "MNIST Confusion Matrix"
+        )
 
         plt.show()
