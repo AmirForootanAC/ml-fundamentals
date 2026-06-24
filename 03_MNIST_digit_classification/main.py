@@ -1,5 +1,7 @@
 from src.data_loader import MNISTDataLoader
 from src.preprocessing.preprocessor import MNISTPreprocessor
+from src.trainer import ModelTrainer
+from src.evaluator import ModelEvaluator
 
 
 def main():
@@ -7,15 +9,32 @@ def main():
     loader = MNISTDataLoader()
     preprocessor = MNISTPreprocessor()
 
-    X, y = loader.load()
+    trainer = ModelTrainer()
+    evaluator = ModelEvaluator()
 
-    print("Before Normalization")
-    print(X.min(), X.max())
+    X, y = loader.load()
 
     X = preprocessor.normalize(X)
 
-    print("After Normalization")
-    print(X.min(), X.max())
+    X_train, X_test, y_train, y_test = (
+        preprocessor.split_data(X, y)
+    )
+
+    model = trainer.train_logistic_regression(
+        X_train,
+        y_train
+    )
+
+    predictions = model.predict(
+        X_test
+    )
+
+    accuracy = evaluator.accuracy(
+        y_test,
+        predictions
+    )
+
+    print(f"Accuracy: {accuracy:.4f}")
 
 
 if __name__ == "__main__":
