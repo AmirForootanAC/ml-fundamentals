@@ -121,3 +121,47 @@ def plot_actual_vs_predicted(
     )
 
     plt.show()
+
+# =========================
+# description: residual plot
+# =========================
+
+import matplotlib.pyplot as plt
+
+
+def plot_residuals(
+    y_true,
+    y_pred
+):
+
+    residuals = y_true - y_pred
+
+    plt.figure(
+        figsize=(8,6)
+    )
+
+    plt.scatter(
+        y_pred,
+        residuals,
+        alpha=0.5
+    )
+
+    plt.axhline(
+        y=0,
+        color="red",
+        linestyle="--"
+    )
+
+    plt.xlabel(
+        "Predicted Values"
+    )
+
+    plt.ylabel(
+        "Residuals"
+    )
+
+    plt.title(
+        "Residual Plot"
+    )
+
+    plt.show()
