@@ -1,15 +1,21 @@
 from src.data_loader import MNISTDataLoader
-from src.visualizer import MNISTVisualizer
+from src.preprocessing.preprocessor import MNISTPreprocessor
 
 
 def main():
 
     loader = MNISTDataLoader()
-    visualizer = MNISTVisualizer()
+    preprocessor = MNISTPreprocessor()
 
     X, y = loader.load()
 
-    visualizer.show_samples(X, y)
+    print("Before Normalization")
+    print(X.min(), X.max())
+
+    X = preprocessor.normalize(X)
+
+    print("After Normalization")
+    print(X.min(), X.max())
 
 
 if __name__ == "__main__":
