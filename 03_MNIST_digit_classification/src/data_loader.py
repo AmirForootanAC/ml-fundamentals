@@ -1,17 +1,18 @@
-from sklearn.datasets import fetch_openml
+import pandas as pd
 
 
 class MNISTDataLoader:
 
     def load(self):
 
-        mnist = fetch_openml(
-            "mnist_784",
-            version=1,
-            as_frame=False
+        df = pd.read_csv(
+            "data/mnist_train.csv"
         )
 
-        X = mnist.data
-        y = mnist.target.astype(int)
+        X = df.drop(
+            columns=["label"]
+        ).values
+
+        y = df["label"].values
 
         return X, y
