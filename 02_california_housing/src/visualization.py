@@ -79,3 +79,45 @@ def plot_feature_importance(model, X, top_n=15):
     plt.show()
 
     return importance_df
+
+# =========================
+# description: actual vs predicted plot
+# =========================
+
+import matplotlib.pyplot as plt
+
+
+def plot_actual_vs_predicted(
+    y_true,
+    y_pred
+):
+
+    plt.figure(
+        figsize=(8,8)
+    )
+
+    plt.scatter(
+        y_true,
+        y_pred,
+        alpha=0.5
+    )
+
+    plt.xlabel(
+        "Actual Values"
+    )
+
+    plt.ylabel(
+        "Predicted Values"
+    )
+
+    plt.title(
+        "Actual vs Predicted"
+    )
+
+    plt.plot(
+        [y_true.min(), y_true.max()],
+        [y_true.min(), y_true.max()],
+        "r--"
+    )
+
+    plt.show()
