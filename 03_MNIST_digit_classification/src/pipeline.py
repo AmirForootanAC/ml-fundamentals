@@ -3,6 +3,9 @@ from src.preprocessing.preprocessor import MNISTPreprocessor
 from src.models.logistic_regression_model import (
     LogisticRegressionModel
 )
+from src.models.random_forest_model import (
+    RandomForestModel
+)
 from src.evaluator import ModelEvaluator
 from src.visualizer import MNISTVisualizer
 
@@ -18,7 +21,7 @@ class MNISTPipeline:
         )
 
         self.model = (
-            LogisticRegressionModel()
+            RandomForestModel()
         )
 
         self.evaluator = (
