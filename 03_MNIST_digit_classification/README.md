@@ -177,9 +177,9 @@ To better understand model behavior, misclassified samples from the best model (
 Most classification errors occurred between visually similar digits:
 
 ```text
-3 ↔ 5
-5 ↔ 8
-8 ↔ 9
+3 ↔ 8
+3 ↔ 2
+7 ↔ 2
 ```
 
 Many incorrectly classified samples were also challenging for human interpretation, indicating that the model errors often occurred on ambiguous handwriting samples.
