@@ -5,6 +5,8 @@ from src.models.random_forest_model import (RandomForestModel)
 from src.models.svm_model import SVMModel
 from src.evaluator import ModelEvaluator
 from src.visualizer import MNISTVisualizer
+from src.model_comparator import ModelComparator
+from src.model_saver import ModelSaver
 
 
 class MNISTPipeline:
@@ -28,6 +30,8 @@ class MNISTPipeline:
         self.visualizer = (
             MNISTVisualizer()
         )
+
+        self.saver = ModelSaver()
 
     def run(self):
 
@@ -64,6 +68,11 @@ class MNISTPipeline:
             )
         )
 
+        self.saver.save(
+            trained_model,
+            "saved_models/svm_model.pkl"
+        )
+
         # =====================
         # Prediction
         # =====================
@@ -78,30 +87,54 @@ class MNISTPipeline:
         # Evaluation
         # =====================
 
-        accuracy = (
-            self.evaluator.accuracy(
-                y_test,
-                predictions
-            )
+        # accuracy = (
+        #     self.evaluator.accuracy(
+        #         y_test,
+        #         predictions
+        #     )
+        # )
+
+        # print(
+        #     f"\nAccuracy: {accuracy:.4f}\n"
+        # )
+
+        # print(
+        #     self.evaluator
+        #     .classification_report(
+        #         y_test,
+        #         predictions
+        #     )
+        # )
+
+        comparator = ModelComparator()
+        comparator.add_result(
+            "Logistic Regression",
+            0.9210
         )
 
-        print(
-            f"\nAccuracy: {accuracy:.4f}\n"
+        comparator.add_result(
+            "Random Forest",
+            0.9665
         )
 
-        print(
-            self.evaluator
-            .classification_report(
-                y_test,
-                predictions
-            )
+        comparator.add_result(
+            "SVM",
+            0.9787
         )
+
+        comparator.show_results()
 
         # =====================
         # Visualization
         # =====================
 
         self.visualizer.show_confusion_matrix(
+            y_test,
+            predictions
+        )
+
+        self.visualizer.show_misclassified_samples(
+            X_test,
             y_test,
             predictions
         )
